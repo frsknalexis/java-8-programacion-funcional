@@ -8,6 +8,15 @@ public class ConsumerClass {
 
 	public static void main(String[] args) {
 		
+		/*In Java 8, Consumer is a functional interface; it takes an argument and returns nothing.
+		 * 
+		 * 	@FunctionalInterface
+			public interface Consumer<T> {
+				void accept(T t);
+			}
+		 * 
+		 */
+		
 		Consumer<String> print = (x) -> System.out.println(x);
 		print.accept("Hello Java");
 		
