@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -44,6 +45,41 @@ public class BiFunctionClass6 {
 		
 		List<Integer> indexesList = getAnotherList(fruits, "a", String::indexOf);
 		System.out.println(indexesList);
+		
+		BiFunction<String, Integer, Integer> biFunction1 = (s, i) -> {
+			if (s != null && i != null) {
+				if (s.equalsIgnoreCase("Manager") && i > 30) {
+					return 1000000;
+				} else if(s.equalsIgnoreCase("Developer") && i > 25) {
+					return 100000;
+				} else {
+					return 0;
+				}
+			} else {
+				return 0;
+			}
+		};
+		
+		Integer salary = biFunction1.apply("Manager", 30);
+		System.out.println(salary);
+		salary = biFunction1.apply("Developer", 28);
+		System.out.println(salary);
+		
+		Function<Integer, String> function = (i) -> {
+			if (i >= 1000000)
+				return "Band 5";
+			else if(i >= 100000)
+				return "Band 4";
+			else
+				return "Band 3";
+		};
+		
+		String band = biFunction1.andThen(function).apply("Manager", 30);
+		System.out.println(band);
+		
+		BiFunction<String, String, String> f2 = String::concat;
+		Function<String, Integer> f1 = String::length;
+		System.out.println(f2.andThen(f1).apply("TopJavaTutorial", ".com"));
 	}
 	
 	static String  addIntegerToNumber(Integer i, Number n) {
